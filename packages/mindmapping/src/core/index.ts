@@ -1,4 +1,4 @@
-import { Event, Listeners } from "../modules";
+import { Event, Layout, Listeners } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
 import { NodeElement } from "../plugins";
 import type { BasePlugin } from "../plugins/basePlugin";
@@ -6,6 +6,7 @@ import type { Node } from "../types/node";
 class MindMappingCore {
   public Event!: Event;
   public Listeners!: Listeners;
+  public Layout!: Layout;
   private plugins: BasePlugin[] = [];
   private _config: Node | null = null;
 
@@ -69,6 +70,7 @@ class MindMappingCore {
   private exportAPI = () => {
     this.loadModule(Event);
     this.loadModule(Listeners);
+    this.loadModule(Layout);
   };
 
   // 注册机制待完善
