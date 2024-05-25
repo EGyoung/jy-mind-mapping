@@ -1,0 +1,37 @@
+{
+  "name": "@jy/mind-mapping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/lodash": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/uuid": "latest"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "eventemitter3": "^5.0.1",
+    "js-quadtree": "^3.3.6",
+    "lodash": "^4.17.21",
+    "paper": "^0.12.17",
+    "rc-dropdown": "4.0.0",
+    "rc-menu": "9.6.0",
+    "rc-tooltip": "^6.0.1",
+    "rc-util": "^5.22.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "requestidlecallback": "^0.3.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "uuid": "^9.0.0"
+  },
+  "exports": {
+    ".": "./src/index.tsx"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

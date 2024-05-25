@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "target": "ES2020",
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "module": "ES2015",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "incremental": true,
+    "composite": true
+  }
+}

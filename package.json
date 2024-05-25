@@ -1,0 +1,29 @@
+{
+  "name": "jy-mind-mapping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm --filter example dev"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "@types/react-css-modules": "^4.6.4",
+    "lerna": "^8.1.2",
+    "less": "^4.2.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "latest",
+    "vite-plugin-react-css-modules": "^1.0.0",
+    "string-hash": "^1.1.3",
+    "postcss": "^8.4.20",
+    "postcss-less": "^6.0.0",
+    "babel-plugin-react-css-modules": "^5.2.6",
+    "@babel/core": "^7.18.10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
