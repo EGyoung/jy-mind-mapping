@@ -48,15 +48,12 @@ class MindMappingCore {
 
   public getRenderNodesAndModel = () => {
     if (!this._config) return null;
-    console.log(this._config);
     const renderNodes: { render: <T>(props: T) => JSX.Element; model: Node }[] =
       [];
     const nodes = this.flatNode(this._config);
-    console.log(nodes);
     if (this._config) {
       nodes.forEach((node) => {
         const plugin = this.getPlugin(node.type);
-        console.log(node.type, plugin, this.plugins, "plugin");
         if (plugin?.render) {
           renderNodes.push({
             render: plugin.render,

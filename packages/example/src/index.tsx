@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { MindMapping } from '@jy/mind-mapping'
 const App = () => {
     return (
-        <div >
+        <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column' }} >
             <MindMapping />
         </div>
     )

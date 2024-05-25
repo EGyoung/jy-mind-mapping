@@ -2,11 +2,12 @@ import React from 'react'
 import { initMindMapping } from './core'
 import type { TMindMappingCore } from './core'
 import type { Node } from './types/node'
+import { Container } from './components/container'
 const MockConfig: Node = {
     type: 'NodeElement',
     width: 100,
     height: 50,
-    text: 'MindMapping',
+    text: 'MindMapping root',
     color: '#000',
     backgroundColor: 'pink',
     id: '1',
@@ -18,25 +19,25 @@ const MockConfig: Node = {
         type: 'NodeElement',
         width: 100,
         height: 50,
-        text: 'MindMapping',
+        text: 'MindMapping 1',
         color: '#000',
         backgroundColor: 'yellow',
         id: '2',
         position: {
-            x: 100,
-            y: 0
+            x: 150,
+            y: -50
         },
         children: []
     }, {
         type: 'NodeElement',
         width: 100,
         height: 50,
-        text: 'MindMapping',
+        text: 'MindMapping 2',
         color: '#000',
         backgroundColor: 'orange',
         id: '3',
         position: {
-            x: 200,
+            x: 150,
             y: 0
         },
         children: []
@@ -44,13 +45,13 @@ const MockConfig: Node = {
         type: 'NodeElement',
         width: 100,
         height: 50,
-        text: 'MindMapping',
+        text: 'MindMapping 3',
         color: '#000',
         backgroundColor: 'green',
         id: '4',
         position: {
-            x: 300,
-            y: 0
+            x: 150,
+            y: 50
         },
         children: []
     }]
@@ -83,9 +84,9 @@ class MindMapping extends React.Component {
     }
     override render(): React.ReactNode {
         return (
-            <div>
+            <Container>
                 {this.getRenderElement()}
-            </div>
+            </Container>
         )
     }
 }
