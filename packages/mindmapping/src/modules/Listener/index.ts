@@ -165,9 +165,9 @@ export class Listeners extends BaseModule {
   /**
    * Module cleanup on destruction
    */
-  public destroy(): void {
+  public override destroy = () => {
     this.removeAll();
-  }
+  };
 
   /**
    * Search method: looks for listener by passed element

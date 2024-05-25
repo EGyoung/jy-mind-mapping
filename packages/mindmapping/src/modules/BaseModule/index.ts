@@ -7,6 +7,7 @@ abstract class BaseModule {
     this.ctx = ctx;
   }
   onLoaded?: (...args: any[]) => void;
+  destroy?: (...args: any[]) => void;
 }
 
 export { BaseModule };

@@ -27,9 +27,9 @@ class Event extends BaseModule {
       }
     }
   }
-  destroy(): void {
+  override destroy = () => {
     this._all.clear();
-  }
+  };
 }
 
 export { Event };
