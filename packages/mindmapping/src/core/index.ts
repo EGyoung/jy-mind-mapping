@@ -14,9 +14,9 @@ class MindMappingCore {
     }
   };
   constructor() {
-    this.loadModules();
+    this.exportAPI();
   }
-  private loadModules = () => {
+  private exportAPI = () => {
     this.loadModule(Event);
     this.loadModule(Listeners);
   };
