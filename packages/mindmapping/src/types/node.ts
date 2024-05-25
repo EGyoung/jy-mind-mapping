@@ -7,6 +7,7 @@ export type Node = {
   id: string;
   position: NodePosition;
   children: Node[];
+  type: string;
 };
 
 export type NodePosition = {
