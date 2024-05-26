@@ -10,7 +10,7 @@ type NodeElementProps = {
 class NodeElement extends BasePlugin<NodeElementProps> {
     override  pluginName = 'NodeElement'
     override render = (props: NodeElementProps) => {
-        return <NodeElementRender nodeData={props.model} />
+        return <NodeElementRender nodeData={props.model} ctx={this.ctx} />
     }
 }
 

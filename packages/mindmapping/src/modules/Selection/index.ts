@@ -9,7 +9,12 @@ class Selection extends BaseModule {
     return this._selectedId;
   }
 
-  public setSelectedId = (id: string) => {
+  private clearSelected = () => {
+    this.setSelectedId(null);
+  };
+
+  public setSelectedId = (id: string | null) => {
+    if (this._selectedId === id) return;
     this._selectedId = id;
     this.ctx.Event.emit(EventName.NODE_SELECTED, id);
   };
@@ -17,8 +22,7 @@ class Selection extends BaseModule {
   private handleContainerClick = (e: Event) => {
     const target = e.target as HTMLElement;
     const node = target.closest("[data-node-id]");
-    if (!node) return;
-    alert("selected");
+    if (!node) return this.clearSelected();
     this.setSelectedId(node.getAttribute("data-node-id")!);
   };
 

@@ -2,13 +2,19 @@ import React from 'react'
 import { initMindMapping } from './core'
 import type { TMindMappingCore } from './core'
 import { Container } from './components/container'
+import { EventName } from './const/index';
 
 class MindMapping extends React.Component {
     private _mindMapping: TMindMappingCore;
     constructor(props: any) {
         super(props)
         this._mindMapping = initMindMapping({})
-        this._mindMapping.Event.on('modelChange', () => {
+        this._mindMapping.Event.on(EventName.MODEL_CHANGE, () => {
+            this.forceUpdate()
+        })
+
+        this._mindMapping.Event.on(EventName.NODE_SELECTED, (node) => {
+            console.log('node selected', node)
             this.forceUpdate()
         })
     }
