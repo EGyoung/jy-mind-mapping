@@ -1,68 +1,14 @@
 import React from 'react'
 import { initMindMapping } from './core'
 import type { TMindMappingCore } from './core'
-import type { Node } from './types/node'
 import { Container } from './components/container'
-const MockConfig: Node = {
-    type: 'NodeElement',
-    width: 100,
-    height: 50,
-    text: 'MindMapping root',
-    color: '#000',
-    backgroundColor: 'pink',
-    id: '1',
-    position: {
-        x: 0,
-        y: 0
-    },
-    children: [{
-        type: 'NodeElement',
-        width: 100,
-        height: 50,
-        text: 'MindMapping 1',
-        color: '#000',
-        backgroundColor: 'yellow',
-        id: '2',
-        position: {
-            x: 150,
-            y: -50
-        },
-        children: []
-    }, {
-        type: 'NodeElement',
-        width: 100,
-        height: 50,
-        text: 'MindMapping 2',
-        color: '#000',
-        backgroundColor: 'orange',
-        id: '3',
-        position: {
-            x: 150,
-            y: 0
-        },
-        children: []
-    }, {
-        type: 'NodeElement',
-        width: 100,
-        height: 50,
-        text: 'MindMapping 3',
-        color: '#000',
-        backgroundColor: 'green',
-        id: '4',
-        position: {
-            x: 150,
-            y: 50
-        },
-        children: []
-    }]
-}
 
 class MindMapping extends React.Component {
     private _mindMapping: TMindMappingCore;
     constructor(props: any) {
         super(props)
-        this._mindMapping = initMindMapping({ config: MockConfig })
-        this._mindMapping.Event.on('stateChange', () => {
+        this._mindMapping = initMindMapping({})
+        this._mindMapping.Event.on('modelChange', () => {
             this.forceUpdate()
         })
     }
@@ -84,11 +30,24 @@ class MindMapping extends React.Component {
     }
     override render(): React.ReactNode {
         return (
-            <Container mindMap={this._mindMapping}>
-                {this.getRenderElement()}
-            </Container>
+            <>
+                <Debugger ctx={this._mindMapping} />
+                <Container mindMap={this._mindMapping}>
+                    {this.getRenderElement()}
+                </Container>
+            </>
         )
     }
+}
+
+const Debugger = ({ ctx }: { ctx: TMindMappingCore }) => {
+    return (
+        <div style={{ display: 'flex' }} >
+            <button style={{ width: 50, height: 50 }} onClick={() => {
+                ctx.createRootNode()
+            }}>创建</button>
+        </div>
+    )
 }
 
 export { MindMapping }

@@ -1,4 +1,4 @@
-import { Event, Layout, Listeners } from "../modules";
+import { Event, Layout, Listeners, Model } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
 import { NodeElement } from "../plugins";
 import type { BasePlugin } from "../plugins/basePlugin";
@@ -7,6 +7,7 @@ class MindMappingCore {
   public Event!: Event;
   public Listeners!: Listeners;
   public Layout!: Layout;
+  public Model!: Model;
   private plugins: BasePlugin[] = [];
   private _config: Node | null = null;
 
@@ -28,7 +29,7 @@ class MindMappingCore {
 
   public setConfig = (config: Node) => {
     this._config = config;
-    this.Event.emit("stateChange");
+    this.Event.emit("modelChange");
   };
 
   // todo 工具方法 抽离
@@ -71,6 +72,7 @@ class MindMappingCore {
     this.loadModule(Event);
     this.loadModule(Listeners);
     this.loadModule(Layout);
+    this.loadModule(Model);
   };
 
   // 注册机制待完善
@@ -88,9 +90,15 @@ class MindMappingCore {
   public destroy = () => {
     this.Event.destroy();
     this.Listeners.destroy();
+    this.Model.destroy();
     this.plugins.forEach((plugin) => {
       plugin.destroy?.();
     });
+  };
+
+  public createRootNode = () => {
+    const config = this.Model.createRootModel();
+    this.setConfig(config);
   };
 }
 
