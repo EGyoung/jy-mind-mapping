@@ -1,22 +1,35 @@
-import { Event, Layout, Listeners, Model } from "../modules";
+import { Event, Layout, Listeners, Model, Selection } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
 import { NodeElement } from "../plugins";
 import type { BasePlugin } from "../plugins/basePlugin";
 import type { Node } from "../types/node";
+import { v4 as uuid } from "uuid";
+
 class MindMappingCore {
+  private _id: string = uuid();
   public Event!: Event;
   public Listeners!: Listeners;
   public Layout!: Layout;
   public Model!: Model;
+  public Selection!: Selection;
   private plugins: BasePlugin[] = [];
   private _config: Node | null = null;
+  private onLoadLists: (() => void)[] = [];
+
+  get id() {
+    return this._id;
+  }
+
+  get container() {
+    return document.querySelector(`[data-id="${this._id}"]`) as HTMLElement;
+  }
 
   private loadModule = (module: typeof BaseModule) => {
     try {
       // @ts-ignore
       this[module.type] = new module({ ctx: this });
       const currentModule = (this as any)[module.type] as BaseModule;
-      currentModule.onLoaded?.();
+      this.onLoadLists.push(currentModule.onLoaded ?? (() => {}));
     } catch (e) {
       console.error(`Module ${module.type} failed to load`, e);
     }
@@ -26,6 +39,10 @@ class MindMappingCore {
     this.exportAPI();
     this.registerPlugins();
   }
+
+  public onLoaded = () => {
+    this.onLoadLists.forEach((fn) => fn());
+  };
 
   public setConfig = (config: Node) => {
     this._config = config;
@@ -73,6 +90,7 @@ class MindMappingCore {
     this.loadModule(Listeners);
     this.loadModule(Layout);
     this.loadModule(Model);
+    this.loadModule(Selection);
   };
 
   // 注册机制待完善
@@ -90,7 +108,8 @@ class MindMappingCore {
   public destroy = () => {
     this.Event.destroy();
     this.Listeners.destroy();
-    this.Model.destroy();
+    this.Model.destroy?.();
+    this.Selection.destroy?.();
     this.plugins.forEach((plugin) => {
       plugin.destroy?.();
     });

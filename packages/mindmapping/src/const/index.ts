@@ -5,3 +5,8 @@ export const BaseNodeWidth = 130;
 export const BaseNodeHeight = 40;
 
 export const Space = 37;
+
+export enum EventName {
+  NODE_SELECTED = "nodeSelected",
+  MODEL_CHANGE = "modelChange",
+}

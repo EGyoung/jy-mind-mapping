@@ -12,6 +12,9 @@ class MindMapping extends React.Component {
             this.forceUpdate()
         })
     }
+    override componentDidMount(): void {
+        this._mindMapping.onLoaded()
+    }
     override componentWillUnmount(): void {
         this._mindMapping.destroy()
     }
