@@ -6,9 +6,11 @@ import { EventName } from './const/index';
 
 class MindMapping extends React.Component {
     private _mindMapping: TMindMappingCore;
+    static mindMapping: TMindMappingCore;
     constructor(props: any) {
         super(props)
         this._mindMapping = initMindMapping({})
+        MindMapping.mindMapping = this._mindMapping
         this._mindMapping.Event.on(EventName.MODEL_CHANGE, () => {
             this.forceUpdate()
         })
@@ -40,7 +42,7 @@ class MindMapping extends React.Component {
     override render(): React.ReactNode {
         return (
             <>
-                <Debugger ctx={this._mindMapping} />
+                {/* <Debugger ctx={this._mindMapping} /> */}
                 <Container mindMap={this._mindMapping}>
                     {this.getRenderElement()}
                 </Container>
@@ -49,14 +51,6 @@ class MindMapping extends React.Component {
     }
 }
 
-const Debugger = ({ ctx }: { ctx: TMindMappingCore }) => {
-    return (
-        <div style={{ display: 'flex' }} >
-            <button style={{ width: 50, height: 50 }} onClick={() => {
-                ctx.createRootNode()
-            }}>创建</button>
-        </div>
-    )
-}
+
 
 export { MindMapping }
