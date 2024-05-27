@@ -1,6 +1,6 @@
 import { Event, Layout, Listeners, Model, Selection } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
-import { NodeElement } from "../plugins";
+import { AddNodeWrapper, NodeElement } from "../plugins";
 import type { BasePlugin } from "../plugins/basePlugin";
 import type { Node } from "../types/node";
 import { v4 as uuid } from "uuid";
@@ -95,7 +95,10 @@ class MindMappingCore {
 
   // 注册机制待完善
   private registerPlugins = () => {
-    this.plugins = [new NodeElement({ ctx: this }) as any];
+    this.plugins = [
+      new NodeElement({ ctx: this }) as any,
+      new AddNodeWrapper({ ctx: this }),
+    ];
     this.plugins.forEach((plugin) => {
       plugin.init?.();
     });
