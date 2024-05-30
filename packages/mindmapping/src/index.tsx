@@ -3,7 +3,6 @@ import { initMindMapping } from './core'
 import type { TMindMappingCore } from './core'
 import { Container } from './components/container'
 import { EventName } from './const/index';
-
 class MindMapping extends React.Component {
     private _mindMapping: TMindMappingCore;
     static mindMapping: TMindMappingCore;
@@ -28,6 +27,7 @@ class MindMapping extends React.Component {
     }
     private getRenderElement = () => {
         const data = this._mindMapping.getRenderNodesAndModel()
+        const WidgetRenderer = this._mindMapping.getWidgetRenders() as any
         if (!data) return null
         return data.map((item) => {
             const { render, model } = item
@@ -35,6 +35,9 @@ class MindMapping extends React.Component {
             return (
                 <div key={model.id}>
                     <Element model={model} />
+                    <WidgetRenderer />
+
+
                 </div>
             )
         })

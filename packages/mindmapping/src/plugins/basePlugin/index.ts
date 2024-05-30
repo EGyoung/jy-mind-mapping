@@ -1,6 +1,7 @@
 import type { TMindMappingCore } from "../../core";
 
 abstract class BasePlugin<T = any> {
+  pluginType?: string;
   pluginName?: string;
   protected ctx: TMindMappingCore;
   constructor({ ctx }: { ctx: TMindMappingCore }) {

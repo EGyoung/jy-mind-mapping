@@ -85,6 +85,21 @@ class MindMappingCore {
     return renderNodes;
   };
 
+  public getWidgetRenders = () => {
+    const getWidgetRendersArray = this.plugins
+      .map((plugin) => {
+        if (plugin.pluginType === "Widget") {
+          return plugin.render;
+        }
+        return null;
+      })
+      .filter(Boolean);
+    console.log(getWidgetRendersArray);
+    const Widget = getWidgetRendersArray[0] as any;
+    // todo多个时的渲染
+    return Widget;
+  };
+
   private exportAPI = () => {
     this.loadModule(Event);
     this.loadModule(Listeners);

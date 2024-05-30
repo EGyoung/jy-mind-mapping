@@ -1,7 +1,12 @@
+import { AddSvg } from "./addSvg"
+import React from 'react';
+
+
 const AddNodeWrapperRender = () => {
     return (
-        <div>
-            AddNodeWrapperRender
+        <div style={{ position: 'relative' }}>
+            {AddSvg}
+
         </div>
     )
 }

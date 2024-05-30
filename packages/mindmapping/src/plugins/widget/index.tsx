@@ -1,5 +1,6 @@
 import { BasePlugin } from "../basePlugin";
 import { AddNodeWrapperRender } from "./render";
+import React from 'react'
 import type { Node } from "../../types/node";
 
 type AddNodeWrapperProps = {
@@ -7,6 +8,7 @@ type AddNodeWrapperProps = {
 };
 
 class AddNodeWrapper extends BasePlugin<AddNodeWrapperProps> {
+  override  pluginType = 'Widget'
   override pluginName = "AddNodeWrapper";
   override render = (props: AddNodeWrapperProps) => {
     return <AddNodeWrapperRender />;
