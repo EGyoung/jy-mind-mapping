@@ -51,7 +51,7 @@ class MindMappingCore {
 
   // todo 工具方法 抽离
   public flatNode = (node: Node) => {
-    const result: any[] = [];
+    const result: Node[] = [];
     const dfs = (node: Node) => {
       if (!node) return;
       result.push(node);
@@ -144,7 +144,7 @@ class MindMappingCore {
       const parentConfig = this.flatNode(originConfig).find(
         (node) => node.id === parentId
       );
-      parentConfig.children.push(this.Model.createNormalNodeModel());
+      parentConfig?.children.push(this.Model.createNormalNodeModel());
       this.setConfig(originConfig);
     }
   };
