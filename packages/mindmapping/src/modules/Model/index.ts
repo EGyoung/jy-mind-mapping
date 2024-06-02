@@ -1,6 +1,7 @@
 import { BaseModule } from "../BaseModule";
 import type { Node } from "../../types/node";
 import { BaseRootHeight, BaseRootWidth } from "../../const";
+import { v4 as uuid } from "uuid";
 
 class Model extends BaseModule {
   static override readonly type = "Model";
@@ -15,6 +16,23 @@ class Model extends BaseModule {
       position: {
         x: 0,
         y: 0,
+      },
+      children: [],
+      type: "NodeElement",
+    } satisfies Node;
+  };
+
+  createNormalNodeModel = () => {
+    return {
+      width: BaseRootWidth,
+      height: BaseRootHeight,
+      text: "子节点",
+      color: "#000",
+      backgroundColor: "pink",
+      id: uuid(),
+      position: {
+        x: 100,
+        y: 100,
       },
       children: [],
       type: "NodeElement",

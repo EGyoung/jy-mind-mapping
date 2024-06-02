@@ -137,6 +137,17 @@ class MindMappingCore {
     const config = this.Model.createRootModel();
     this.setConfig(config);
   };
+
+  public createNode = (parentId: string, direction: string) => {
+    const originConfig = this._config;
+    if (originConfig) {
+      const parentConfig = this.flatNode(originConfig).find(
+        (node) => node.id === parentId
+      );
+      parentConfig.children.push(this.Model.createNormalNodeModel());
+      this.setConfig(originConfig);
+    }
+  };
 }
 
 const initMindMapping = (

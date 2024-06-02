@@ -1,6 +1,7 @@
-import type { TMindMappingCore, Node } from "../../core";
+import type { TMindMappingCore } from "../../core";
+import type { Node } from '../../types/node'
 import { AddSvg } from "./addSvg"
-import React from 'react';
+import React, { useEffect } from 'react';
 const commonStyle = {
     position: 'absolute',
     border: 'none',
@@ -39,14 +40,31 @@ const AddNodeWrapperRender = ({ model, ctx }: { model: Node, ctx: TMindMappingCo
         return null
     }
     return (
-        <>
-            {Object.entries(divConfigs).map(([key, style]) => (
-                <div key={key} style={{ ...commonStyle, ...style } as any}>
-                    {AddSvg}
-                </div>
+        <div>
+            {Object.entries(divConfigs).map(([direction, style]) => (
+                <CreateIcon onClick={() => ctx.createNode(model.id, direction)} key={direction} style={{ ...commonStyle, ...style }} />
             ))}
-        </>
+        </div>
 
+    )
+}
+
+const CreateIcon = ({ onClick, key, style }: any) => {
+    const ref = React.useRef<HTMLDivElement>(null)
+    useEffect(() => {
+        const handleClick = (e: Event) => {
+            e.stopPropagation()
+            onClick()
+        }
+        ref.current?.addEventListener('click', handleClick)
+        return () => {
+            ref.current?.removeEventListener('click', handleClick)
+        }
+    }, [])
+    return (
+        <div ref={ref} key={key} style={style}>
+            {AddSvg}
+        </div>
     )
 }
 

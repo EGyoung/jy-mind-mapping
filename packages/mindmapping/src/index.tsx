@@ -52,7 +52,6 @@ class MindMapping extends React.Component {
     override render(): React.ReactNode {
         return (
             <>
-                {/* <Debugger ctx={this._mindMapping} /> */}
                 <Container mindMap={this._mindMapping}>
                     {this.getRenderElement()}
                 </Container>
