@@ -49,12 +49,18 @@ const AddNodeWrapperRender = ({ model, ctx }: { model: Node, ctx: TMindMappingCo
     )
 }
 
-const CreateIcon = ({ onClick, key, style }: any) => {
+interface ICreateIcon {
+    onClick?: () => void
+    key: string
+    style: React.CSSProperties
+}
+
+const CreateIcon = ({ onClick, key, style }: ICreateIcon) => {
     const ref = React.useRef<HTMLDivElement>(null)
     useEffect(() => {
         const handleClick = (e: Event) => {
             e.stopPropagation()
-            onClick()
+            onClick?.()
         }
         ref.current?.addEventListener('click', handleClick)
         return () => {
