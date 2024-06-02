@@ -38,13 +38,13 @@ class MindMapping extends React.Component {
                 <div key={model.id} style={{
                     position: 'absolute', top: model.position.y, left: model.position.x, width: model.width, height: model.height,
                     color: model.color, backgroundColor: model.backgroundColor,
-                    border: isSelected ? '1px solid red' : '1px solid transparent',
+                    border: isSelected ? '1px solid rgb(91, 59, 161)' : '1px solid transparent',
                     borderRadius: 5,
                     textAlign: 'center',
                     lineHeight: `${model.height}px`
                 }}>
                     <Element model={model} />
-                    <WidgetRenderer />
+                    <WidgetRenderer model={model} />
                 </div>
             )
         })

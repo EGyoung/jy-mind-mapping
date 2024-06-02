@@ -1,3 +1,4 @@
+import type { TMindMappingCore, Node } from "../../core";
 import { AddSvg } from "./addSvg"
 import React from 'react';
 const commonStyle = {
@@ -6,6 +7,7 @@ const commonStyle = {
     lineHeight: 0,
     cursor: 'pointer',
 } satisfies React.CSSProperties;
+
 const divConfigs = {
     top: {
         top: 0,
@@ -31,7 +33,11 @@ const divConfigs = {
 
 
 
-const AddNodeWrapperRender = () => {
+const AddNodeWrapperRender = ({ model, ctx }: { model: Node, ctx: TMindMappingCore }) => {
+    const isSelected = ctx.Selection.selectedId === model.id
+    if (!isSelected) {
+        return null
+    }
     return (
         <>
             {Object.entries(divConfigs).map(([key, style]) => (
