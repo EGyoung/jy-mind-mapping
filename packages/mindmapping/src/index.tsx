@@ -32,12 +32,19 @@ class MindMapping extends React.Component {
         return data.map((item) => {
             const { render, model } = item
             const Element = render
+            const isSelected = this._mindMapping.Selection.selectedId === model.id
+
             return (
-                <div key={model.id}>
+                <div key={model.id} style={{
+                    position: 'absolute', top: model.position.y, left: model.position.x, width: model.width, height: model.height,
+                    color: model.color, backgroundColor: model.backgroundColor,
+                    border: isSelected ? '1px solid red' : '1px solid transparent',
+                    borderRadius: 5,
+                    textAlign: 'center',
+                    lineHeight: `${model.height}px`
+                }}>
                     <Element model={model} />
                     <WidgetRenderer />
-
-
                 </div>
             )
         })
