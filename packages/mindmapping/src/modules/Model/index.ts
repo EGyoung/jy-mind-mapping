@@ -1,6 +1,11 @@
 import { BaseModule } from "../BaseModule";
 import type { Node } from "../../types/node";
-import { BaseRootHeight, BaseRootWidth } from "../../const";
+import {
+  BaseNodeHeight,
+  BaseNodeWidth,
+  BaseRootHeight,
+  BaseRootWidth,
+} from "../../const";
 import { v4 as uuid } from "uuid";
 
 class Model extends BaseModule {
@@ -23,12 +28,13 @@ class Model extends BaseModule {
   };
 
   createNormalNodeModel = () => {
+    //todo: 生成节点的位置需重新计算
     return {
-      width: BaseRootWidth,
-      height: BaseRootHeight,
+      width: BaseNodeWidth,
+      height: BaseNodeHeight,
       text: "子节点",
       color: "#000",
-      backgroundColor: "pink",
+      backgroundColor: "yellow",
       id: uuid(),
       position: {
         x: 100,
