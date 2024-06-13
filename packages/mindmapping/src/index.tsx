@@ -11,6 +11,7 @@ class MindMapping extends React.Component {
         this._mindMapping = initMindMapping({})
         MindMapping.mindMapping = this._mindMapping
         this._mindMapping.Event.on(EventName.MODEL_CHANGE, () => {
+            this._mindMapping.Model.calculateNodePosition()
             this.forceUpdate()
         })
 

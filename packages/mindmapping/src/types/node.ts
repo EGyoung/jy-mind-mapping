@@ -1,4 +1,5 @@
 export type Node = {
+  isRoot: boolean;
   width: number;
   height: number;
   text: string;

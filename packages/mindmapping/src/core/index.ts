@@ -148,6 +148,10 @@ class MindMappingCore {
       this.setConfig(originConfig);
     }
   };
+
+  public getConfig = () => {
+    return this._config;
+  };
 }
 
 const initMindMapping = (
