@@ -3,13 +3,17 @@ import { initMindMapping } from './core'
 import type { TMindMappingCore } from './core'
 import { Container } from './components/container'
 import { EventName } from './const/index';
+import { defaultConfig } from './const/defaultConfig';
 class MindMapping extends React.Component {
     private _mindMapping: TMindMappingCore;
     static mindMapping: TMindMappingCore;
     constructor(props: any) {
         super(props)
-        this._mindMapping = initMindMapping({})
-        MindMapping.mindMapping = this._mindMapping
+        this._mindMapping = initMindMapping({
+            config: defaultConfig
+        })
+        MindMapping.mindMapping = this._mindMapping;
+        (window as any).MindMapping = MindMapping.mindMapping
         this._mindMapping.Event.on(EventName.MODEL_CHANGE, () => {
             this._mindMapping.Model.calculateNodePosition()
             this.forceUpdate()
