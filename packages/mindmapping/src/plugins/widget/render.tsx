@@ -1,7 +1,7 @@
 import type { TMindMappingCore } from "../../core";
 import type { Node } from '../../types/node'
-import { AddSvg } from "./addSvg"
-import React, { useEffect } from 'react';
+import React from 'react';
+import { CreateIcon } from "./createIcon";
 const commonStyle = {
     position: 'absolute',
     border: 'none',
@@ -49,29 +49,5 @@ const AddNodeWrapperRender = ({ model, ctx }: { model: Node, ctx: TMindMappingCo
     )
 }
 
-interface ICreateIcon {
-    onClick?: () => void
-    key: string
-    style: React.CSSProperties
-}
-
-const CreateIcon = ({ onClick, key, style }: ICreateIcon) => {
-    const ref = React.useRef<HTMLDivElement>(null)
-    useEffect(() => {
-        const handleClick = (e: Event) => {
-            e.stopPropagation()
-            onClick?.()
-        }
-        ref.current?.addEventListener('click', handleClick)
-        return () => {
-            ref.current?.removeEventListener('click', handleClick)
-        }
-    }, [])
-    return (
-        <div ref={ref} key={key} style={style}>
-            {AddSvg}
-        </div>
-    )
-}
 
 export { AddNodeWrapperRender }
