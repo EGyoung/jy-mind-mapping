@@ -10,3 +10,8 @@ export enum EventName {
   NODE_SELECTED = "nodeSelected",
   MODEL_CHANGE = "modelChange",
 }
+
+export enum PluginType {
+  Widget = "Widget",
+  Normal = "Normal",
+}

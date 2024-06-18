@@ -1,3 +1,4 @@
+import { PluginType } from "../const";
 import { Event, Layout, Listeners, Model, Selection } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
 import { AddNodeWrapper, NodeElement } from "../plugins";
@@ -88,7 +89,7 @@ class MindMappingCore {
   public getWidgetRenders = () => {
     const getWidgetRendersArray = this.plugins
       .map((plugin) => {
-        if (plugin.pluginType === "Widget") {
+        if (plugin.pluginType === PluginType.Widget) {
           return plugin.render;
         }
         return null;
