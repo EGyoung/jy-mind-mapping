@@ -1,7 +1,7 @@
-import { BasePlugin } from "@jy/mapping/plugins/basePlugin";
+import { BasePlugin } from "@jy/mind-mapping/plugins/basePlugin";
 import React from 'react'
-import type { Node } from '@jy/mapping/types/node'
-import { PluginType } from "@jy/mapping/const";
+import type { Node } from '@jy/mind-mapping/types/node'
+import { PluginType } from "@jy/mind-mapping/const";
 import { Line } from "./line";
 
 type LinePluginProps = {

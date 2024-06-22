@@ -55,10 +55,12 @@ class MindMapping extends React.Component {
         })
     }
     override render(): React.ReactNode {
+        const Widget = this._mindMapping.getWidgetRenders() as any
         return (
             <>
                 <Container mindMap={this._mindMapping}>
                     {this.getRenderElement()}
+                    <Widget />
                 </Container>
             </>
         )

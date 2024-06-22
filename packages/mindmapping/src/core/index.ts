@@ -3,6 +3,7 @@ import { Event, Layout, Listeners, Model, Selection } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
 import { AddNodeWrapper, NodeElement } from "../plugins";
 import type { BasePlugin } from "../plugins/basePlugin";
+import { LinePlugin } from "../plugins/widgets";
 import type { Node } from "../types/node";
 import { v4 as uuid } from "uuid";
 
@@ -101,6 +102,20 @@ class MindMappingCore {
     return Decorator;
   };
 
+  public getWidgetRenders = () => {
+    const getWidgetRendersArray = this.plugins
+      .map((plugin) => {
+        if (plugin.pluginType === PluginType.Widget) {
+          return plugin.render;
+        }
+        return null;
+      })
+      .filter(Boolean);
+    const Widget = getWidgetRendersArray[0] as any;
+    // todo多个时的渲染
+    return Widget;
+  };
+
   private exportAPI = () => {
     this.loadModule(Event);
     this.loadModule(Listeners);
@@ -114,6 +129,7 @@ class MindMappingCore {
     this.plugins = [
       new NodeElement({ ctx: this }) as any,
       new AddNodeWrapper({ ctx: this }),
+      new LinePlugin({ ctx: this }),
     ];
     this.plugins.forEach((plugin) => {
       plugin.init?.();

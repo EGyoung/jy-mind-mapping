@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "@jy/mapping/*": ["./src/*"]
+      "@jy/mind-mapping/*": ["./src/*"]
     }
   }
 }
