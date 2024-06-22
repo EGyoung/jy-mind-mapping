@@ -1,18 +1,19 @@
-import { BasePlugin } from "../../basePlugin";
+import { BasePlugin } from "@jy/mapping/plugins/basePlugin";
 import React from 'react'
-import type { Node } from "../../../types/node"
-import { PluginType } from "../../../const";
+import type { Node } from '@jy/mapping/types/node'
+import { PluginType } from "@jy/mapping/const";
+import { Line } from "./line";
 
 type LinePluginProps = {
   model: Node;
 };
 
-class LinePlugins extends BasePlugin<LinePluginProps> {
+class LinePlugin extends BasePlugin<LinePluginProps> {
   override pluginType = PluginType.Widget
-  override pluginName = "AddNodeWrapper";
+  override pluginName = "LinePlugin";
   override render = (props: LinePluginProps) => {
-    return <></>
+    return <Line  {...props} />
   };
 }
 
-export { LinePlugins };
+export { LinePlugin };
