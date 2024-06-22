@@ -10,7 +10,7 @@ type AddNodeWrapperProps = {
 };
 
 class AddNodeWrapper extends BasePlugin<AddNodeWrapperProps> {
-  override pluginType = PluginType.Widget
+  override pluginType = PluginType.Decorator
   override pluginName = "AddNodeWrapper";
   override render = (props: AddNodeWrapperProps) => {
     return <AddNodeWrapperRender {...props} ctx={this.ctx} />;

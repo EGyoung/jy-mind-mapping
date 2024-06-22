@@ -14,4 +14,5 @@ export enum EventName {
 export enum PluginType {
   Widget = "Widget",
   Normal = "Normal",
+  Decorator = "Decorator", // 相当于hoc
 }

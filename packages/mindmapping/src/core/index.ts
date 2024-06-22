@@ -86,19 +86,19 @@ class MindMappingCore {
     return renderNodes;
   };
 
-  public getWidgetRenders = () => {
-    const getWidgetRendersArray = this.plugins
+  public getDecoratorRenders = () => {
+    const getDecoratorRendersArray = this.plugins
       .map((plugin) => {
-        if (plugin.pluginType === PluginType.Widget) {
+        if (plugin.pluginType === PluginType.Decorator) {
           return plugin.render;
         }
         return null;
       })
       .filter(Boolean);
-    console.log(getWidgetRendersArray);
-    const Widget = getWidgetRendersArray[0] as any;
+    console.log(getDecoratorRendersArray);
+    const Decorator = getDecoratorRendersArray[0] as any;
     // todo多个时的渲染
-    return Widget;
+    return Decorator;
   };
 
   private exportAPI = () => {

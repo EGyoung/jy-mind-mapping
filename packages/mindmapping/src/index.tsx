@@ -32,7 +32,7 @@ class MindMapping extends React.Component {
     }
     private getRenderElement = () => {
         const data = this._mindMapping.getRenderNodesAndModel()
-        const WidgetRenderer = this._mindMapping.getWidgetRenders() as any
+        const DecoratorRender = this._mindMapping.getDecoratorRenders() as any
         if (!data) return null
         return data.map((item) => {
             const { render, model } = item
@@ -49,7 +49,7 @@ class MindMapping extends React.Component {
                     lineHeight: `${model.height}px`
                 }}>
                     <Element model={model} />
-                    <WidgetRenderer model={model} />
+                    <DecoratorRender model={model} />
                 </div>
             )
         })

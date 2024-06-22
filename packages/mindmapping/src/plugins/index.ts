@@ -1,2 +1,2 @@
 export * from "./nodeElement";
-export * from "./widget";
+export * from "./decorators";
