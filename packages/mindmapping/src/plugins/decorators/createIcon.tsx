@@ -7,7 +7,7 @@ interface ICreateIcon {
     style: React.CSSProperties
 }
 
-const CreateIcon = ({ onClick, key, style }: ICreateIcon) => {
+const CreateIcon = ({ onClick, style }: ICreateIcon) => {
     const ref = React.useRef<HTMLDivElement>(null)
     useEffect(() => {
         const handleClick = (e: Event) => {
@@ -20,7 +20,7 @@ const CreateIcon = ({ onClick, key, style }: ICreateIcon) => {
         }
     }, [])
     return (
-        <div ref={ref} key={key} style={style}>
+        <div ref={ref} style={style}>
             {AddSvg}
         </div>
     )
