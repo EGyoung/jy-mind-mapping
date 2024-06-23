@@ -32,6 +32,9 @@ class MindMapping extends React.Component {
     }
     private getRenderElement = () => {
         const data = this._mindMapping.getRenderNodesAndModel()
+        const rootModel = data?.[0].model
+        const rootHeight = rootModel?.height ?? 0
+        const rootWidth = rootModel?.width ?? 0
         const DecoratorRender = this._mindMapping.getDecoratorRenders() as any
         if (!data) return null
         return data.map((item) => {
@@ -41,12 +44,13 @@ class MindMapping extends React.Component {
 
             return (
                 <div key={model.id} style={{
-                    position: 'absolute', top: model.position.y, left: model.position.x, width: model.width, height: model.height,
+                    position: 'absolute', top: model.position.y - rootHeight / 2, left: model.position.x - rootWidth / 2, width: model.width, height: model.height,
                     color: model.color, backgroundColor: model.backgroundColor,
                     border: isSelected ? '1px solid rgb(91, 59, 161)' : '1px solid transparent',
                     borderRadius: 5,
                     textAlign: 'center',
-                    lineHeight: `${model.height}px`
+                    lineHeight: `${model.height}px`,
+                    boxSizing: 'border-box',
                 }}>
                     <Element model={model} />
                     <DecoratorRender model={model} />
