@@ -9,21 +9,25 @@
   },
   "devDependencies": {
     "@types/node": "latest",
-    "@vitejs/plugin-react-swc": "^3.5.0",
     "@types/react-css-modules": "^4.6.4",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "babel-plugin-react-css-modules": "^5.2.6",
     "lerna": "^8.1.2",
     "less": "^4.2.0",
+    "postcss": "^8.4.20",
+    "postcss-less": "^6.0.0",
+    "string-hash": "^1.1.3",
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-plugin-dts": "latest",
     "vite-plugin-react-css-modules": "^1.0.0",
-    "string-hash": "^1.1.3",
-    "postcss": "^8.4.20",
-    "postcss-less": "^6.0.0",
-    "babel-plugin-react-css-modules": "^5.2.6",
-    "@babel/core": "^7.18.10"
+    "@vitejs/plugin-react": "^4.3.1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@babel/types": "^7.24.7"
+  
+  }
 }
