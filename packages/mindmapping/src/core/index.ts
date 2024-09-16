@@ -68,21 +68,28 @@ class MindMappingCore {
   };
 
   public getParentNode = (nodeId: string): Node | null => {
-    if (!this._config) return null;
-    let result: Node = this._config;
-    const dfs = (node: Node) => {
-      if (node.id === nodeId) {
-        return;
+    // Helper function to perform recursive search
+    function search(node: Node | null, parent: Node | null): Node | null {
+      if (!node) {
+        return null;
       }
-      if (node.children.length) {
-        result = node;
-        for (let currentNode of node.children) {
-          dfs(currentNode);
+      // If the current node's ID matches the target ID, return the parent
+      if (node.id === nodeId) {
+        return parent;
+      }
+      // Recursively search in the children
+      for (const child of node.children) {
+        const result = search(child, node);
+        if (result !== null) {
+          return result;
         }
       }
-    };
-    dfs(this._config);
-    return result;
+      // If not found, return null
+      return null;
+    }
+
+    // Start the search from the root node
+    return search(this._config, null);
   };
 
   public getRenderNodesAndModel = () => {
@@ -173,13 +180,21 @@ class MindMappingCore {
     this.setConfig(config);
   };
 
-  public createNode = (parentId: string, direction: string) => {
+  public createNode = (selectModelId: string, direction: string) => {
     const originConfig = this._config;
     if (originConfig) {
-      const parentConfig = this.flatNode(originConfig).find(
-        (node) => node.id === parentId
+      console.log("createNode");
+      const model = this.flatNode(originConfig).find(
+        (node) => node.id === selectModelId
       );
-      parentConfig?.children.push(this.Model.createNormalNodeModel());
+      const originModel = this.Model.createNormalNodeModel();
+      model?.children.push({
+        ...originModel,
+        position: {
+          x: model.position.x + 200,
+          y: model.position.y,
+        },
+      });
       this.setConfig(originConfig);
     }
   };

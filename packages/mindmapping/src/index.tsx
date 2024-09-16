@@ -43,8 +43,8 @@ class MindMapping extends React.Component {
             return (
                 <div key={model.id} style={{
                     position: 'absolute',
-                    top: model.position.y - (parentNode?.height ?? 0) / 2,
-                    left: model.position.x - (parentNode?.width ?? 0) / 2,
+                    top: model.position.y,
+                    left: model.position.x,
                     width: model.width,
                     height: model.height,
                     color: model.color,
