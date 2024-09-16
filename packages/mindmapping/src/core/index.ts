@@ -67,6 +67,24 @@ class MindMappingCore {
     return result;
   };
 
+  public getParentNode = (nodeId: string): Node | null => {
+    if (!this._config) return null;
+    let result: Node = this._config;
+    const dfs = (node: Node) => {
+      if (node.id === nodeId) {
+        return;
+      }
+      if (node.children.length) {
+        result = node;
+        for (let currentNode of node.children) {
+          dfs(currentNode);
+        }
+      }
+    };
+    dfs(this._config);
+    return result;
+  };
+
   public getRenderNodesAndModel = () => {
     if (!this._config) return null;
     const renderNodes: { render: <T>(props: T) => JSX.Element; model: Node }[] =
@@ -111,9 +129,9 @@ class MindMappingCore {
         return null;
       })
       .filter(Boolean);
-    const Widget = getWidgetRendersArray[0] as any;
+    const Widget = getWidgetRendersArray?.[0] as any;
     // todo多个时的渲染
-    return Widget;
+    return Widget ?? null;
   };
 
   private exportAPI = () => {
@@ -129,7 +147,7 @@ class MindMappingCore {
     this.plugins = [
       new NodeElement({ ctx: this }) as any,
       new AddNodeWrapper({ ctx: this }),
-      new LinePlugin({ ctx: this }),
+      // new LinePlugin({ ctx: this }),
     ];
     this.plugins.forEach((plugin) => {
       plugin.init?.();
