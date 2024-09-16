@@ -32,20 +32,23 @@ class MindMapping extends React.Component {
     }
     private getRenderElement = () => {
         const data = this._mindMapping.getRenderNodesAndModel()
-        const rootModel = data?.[0].model
-        const rootHeight = rootModel?.height ?? 0
-        const rootWidth = rootModel?.width ?? 0
         const DecoratorRender = this._mindMapping.getDecoratorRenders() as any
         if (!data) return null
         return data.map((item) => {
             const { render, model } = item
             const Element = render
             const isSelected = this._mindMapping.Selection.selectedId === model.id
-
+            const parentNode = this._mindMapping.getParentNode(model.id)
+            console.log(parentNode, model.id, model.position, 'parentNode');
             return (
                 <div key={model.id} style={{
-                    position: 'absolute', top: model.position.y - rootHeight / 2, left: model.position.x - rootWidth / 2, width: model.width, height: model.height,
-                    color: model.color, backgroundColor: model.backgroundColor,
+                    position: 'absolute',
+                    top: model.position.y - (parentNode?.height ?? 0) / 2,
+                    left: model.position.x - (parentNode?.width ?? 0) / 2,
+                    width: model.width,
+                    height: model.height,
+                    color: model.color,
+                    backgroundColor: model.backgroundColor,
                     border: isSelected ? '1px solid rgb(91, 59, 161)' : '1px solid transparent',
                     borderRadius: 5,
                     textAlign: 'center',
@@ -64,7 +67,9 @@ class MindMapping extends React.Component {
             <>
                 <Container mindMap={this._mindMapping}>
                     {this.getRenderElement()}
-                    <Widget />
+                    {
+                        Widget && <Widget />
+                    }
                 </Container>
             </>
         )
