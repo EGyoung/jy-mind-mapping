@@ -59,6 +59,7 @@ class Model extends BaseModule {
   */
   calculateNodePosition = (node = this.ctx.getConfig()) => {
     // node.
+    console.log("???????????");
     if (node?.isRoot) {
       const totalHeight =
         node.children.length * BaseNodeHeight +
@@ -74,6 +75,23 @@ class Model extends BaseModule {
             (BaseRootHeight - BaseNodeHeight) / 2,
         };
       });
+    } else {
+      if (node) {
+        const totalHeight =
+          node.children.length * BaseNodeHeight +
+          Math.max(0, node.children.length - 1) * DefaultSpace;
+        node.children.forEach((child, index) => {
+          child.position = {
+            x: node.position.x + BaseNodeWidth + DefaultSpace,
+            y:
+              node.position.y -
+              (BaseNodeHeight - BaseNodeHeight) / 2 +
+              (BaseNodeHeight + DefaultSpace) * index +
+              (BaseNodeHeight - totalHeight) / 2 +
+              (BaseNodeHeight - BaseNodeHeight) / 2,
+          };
+        });
+      }
     }
   };
 }

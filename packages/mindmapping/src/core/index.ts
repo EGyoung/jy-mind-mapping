@@ -1,4 +1,4 @@
-import { PluginType } from "../const";
+import { EventName, PluginType } from "../const";
 import { Event, Layout, Listeners, Model, Selection } from "../modules";
 import type { BaseModule } from "../modules/BaseModule";
 import { AddNodeWrapper, NodeElement } from "../plugins";
@@ -48,7 +48,7 @@ class MindMappingCore {
 
   public setConfig = (config: Node) => {
     this._config = config;
-    this.Event.emit("modelChange");
+    this.Event.emit(EventName.MODEL_CHANGE);
   };
 
   // todo 工具方法 抽离
@@ -188,14 +188,11 @@ class MindMappingCore {
         (node) => node.id === selectModelId
       );
       const originModel = this.Model.createNormalNodeModel();
-      model?.children.push({
-        ...originModel,
-        position: {
-          x: model.position.x + 200,
-          y: model.position.y,
-        },
-      });
-      this.setConfig(originConfig);
+      if (model?.children) {
+        model.children.push(originModel);
+        this.setConfig(originConfig);
+        this.Model.calculateNodePosition(model);
+      }
     }
   };
 
